@@ -156,3 +156,4 @@ cython_debug/
 src/build/*
 src/dist/*
 vclogs.spec
+*.csv
