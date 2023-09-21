@@ -158,6 +158,11 @@ def runVCLogs(browser=None,out_file = 'vclogs.csv', retry_attempts = 5):
 		except Exception as e:
 			attempt += 1
 			print(f"ERROR! - {e} - Continue Token: {continue_token} Attempt: {attempt}")
+			if attempt == retry_attempts:
+				print(f"Status Code: {r.status_code}")
+				print(f"Headders: {r.headers}")
+				print(f"text: {r.text}")
+				print(f"Content: {r.json()}")
 			
 	
 	print(f"VCLogs Ended Gracefully - Processed {match_count_total} logs")
