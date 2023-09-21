@@ -5,6 +5,7 @@ import browser_cookie3
 import datetime
 import csv
 import argparse
+import urllib.parse
 
 columns_dict = {'Steam ID':'st_id3','Match ID':'match_id','Reached Conclusion': 'match_completed','Type': 'match_type','Map Index': 'match_map_index','Match Creation Time': 'match_datetime_created','Match IP': 'match_ip','Match Port': 'match_port','Datacenter': 'match_datacenter','Match Size': 'match_size','Join Time': 'player_datetime_joined','Party ID at Join': 'player_partyid_start','Team at Join': 'player_team_start','Ping Estimate at Join': 'player_ping_start','Joined After Match Start': 'player_joined_after_match_start','Time in Queue': 'player_time_in_queue','Match End Time': 'match_datetime_end','Season ID': 'match_season_id','Match Status': 'match_status','Match Duration': 'match_duration','RED Team Final Score': 'match_score_red','BLU Team Final Score': 'match_score_blu','Winning Team': 'match_winning_team','Game Mode': 'match_gamemode','Win Reason': 'match_win_reason','Match Flags': 'match_flags','Match Included Bots': 'match_included_bot','Time Left Match': 'player_datetime_left','Result PartyID': 'player_partyid_end','Result Team': 'player_team_end','Result Score': 'player_score','Result Ping': 'player_ping_end','Result Player Flags': 'player_flags_end','Result Displayed Rating': 'player_displayed_rating','Result Displayed Rating Change': 'player_displayed_rating_change','Result Rank': 'player_rank','Classes Played': 'stats_classes_played','Kills': 'stats_kills','Deaths': 'stats_deaths','Damage': 'stats_damage','Healing': 'stats_healing','Support': 'stats_support','Score Medal': 'stats_medal_score','Kills Medal': 'stats_medal_kills','Damage Medal': 'stats_medal_damage','Healing Medal': 'stats_metal_healing','Support Medal': 'stats_metal_support','Leave Reason': 'player_leave_reason','Connection Time': 'player_datetime_connection'}
 
@@ -27,7 +28,7 @@ def getCustomURL(st_id64,cookie_jar):
 		
 def getMatchHistory(continue_token, session_id, custom_url, cookie_jar):
 	'''Gets match history'''
-	url = f'{custom_url}gcpd/440'
+	url =  urllib.parse.urljoin(custom_url,'gcpd/440')
 	query_params = {
 		'ajax':1,
 		'tab':'playermatchhistory',
